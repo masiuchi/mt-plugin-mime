@@ -1,0 +1,24 @@
+name: MIME
+version: 0.01
+
+plugin_link: https://github.com/masiuchi/mt-plugin-mime
+description: <__trans phrase="Can send HTML mail.">
+
+author_name: Masahiro Iuchi
+author_link: https://github.com/masiuchi
+
+object_types:
+  template:
+    html_mail: integer meta
+
+callbacks:
+  init_app: $MIME::MT::Plugin::MIME::init_app
+  mail_filter: $MIME::MT::Plugin::MIME::mail_filter
+
+applications:
+  cms:
+    callbacks:
+      template_source.edit_template: $MIME::MT::Plugin::MIME::CMS::tmpl_src_edit_tmpl
+      template_param.edit_template: $MIME::MT::Plugin::MIME::CMS::tmpl_param_edit_tmpl
+      cms_pre_save.template: $MIME::MT::Plugin::MIME::CMS::pre_save_tmpl
+
